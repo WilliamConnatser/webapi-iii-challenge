@@ -78,7 +78,6 @@ router.put('/:id', (req, res) => {
                     error: "Please provide text and a user_id for the post."
                 });
             } else {
-                console.log(1,response)
                 postEditing = response;
                 return db.update(req.params.id, {
                     text: req.body.text,
@@ -87,11 +86,9 @@ router.put('/:id', (req, res) => {
             }
         })
         .then(response => {
-            console.log(2,response)
             return db.getById(postEditing.id);
         })
         .then(response => {
-            console.log(3,response)
             res.status(200).send({
                 data: response
             });
