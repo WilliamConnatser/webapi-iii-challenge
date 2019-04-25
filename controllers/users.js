@@ -62,6 +62,18 @@ router.get('/:id', (req, res) => {
         });
 });
 
+router.get('/:id/posts', (req, res) => {
+    db.getUserPosts(req.params.id)
+        .then(data => {
+            res.status(200).send(data);
+        })
+        .catch(error => {
+            res.status(500).send({
+                error: "The posts information could not be retrieved."
+            })
+        });
+});
+
 router.put('/:id', (req, res) => {
 
     let userEditing;
